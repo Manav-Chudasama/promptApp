@@ -56,13 +56,15 @@ const UpdatePromptForm = ({ promptId }) => {
   };
 
   return (
-    <Form
-      type="Update"
-      post={post}
-      setPost={setPost}
-      submitting={submitting}
-      handleSubmit={updatePrompt}
-    />
+    <Suspense fallback={<img src="assets/icons/loader.svg" />}>
+      <Form
+        type="Update"
+        post={post}
+        setPost={setPost}
+        submitting={submitting}
+        handleSubmit={updatePrompt}
+      />
+    </Suspense>
   );
 };
 
