@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/global.css";
+import "@styles/global.css";
 import Navbar from "../components/Navbar";
 import Provider from "../components/Provider";
 

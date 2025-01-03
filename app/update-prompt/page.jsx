@@ -1,15 +1,13 @@
 "use client";
 import React from "react";
-import { useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Form from "../../components/Form";
 
 const Home = () => {
   const router = useRouter();
-  const { data: session } = useSession();
   const searchParams = useSearchParams();
-  const promptId =  searchParams.get("id");
+  const promptId = searchParams.get("id");
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     prompt: "",
@@ -26,18 +24,19 @@ const Home = () => {
     };
     if (promptId) fetchPrompt();
   }, [promptId]);
-  const createPrompt = async (e) => {
+  const updatePrompt = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+
+    if (!promptId) return alert("Prompt ID not found");
     try {
-      const res = await fetch("/api/prompt/new", {
-        method: "POST",
+      const res = await fetch(`/api/prompt/${promptId}`, {
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           prompt: post.prompt,
-          userId: session?.user.id,
           tag: post.tag,
         }),
       });
@@ -54,11 +53,11 @@ const Home = () => {
 
   return (
     <Form
-      type="create"
+      type="Update"
       post={post}
       setPost={setPost}
       submitting={submitting}
-      handleSubmit={createPrompt}
+      handleSubmit={updatePrompt}
     />
   );
 };

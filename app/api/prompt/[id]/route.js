@@ -5,7 +5,7 @@ export const GET = async (req, { params }) => {
   try {
     await connectDB();
     const { id } = await params;
-    const prompts = await Prompt.findById({ id }).populate("creator");
+    const prompts = await Prompt.findById(id).populate("creator");
     if (!prompts) {
       return new Response(JSON.stringify({ message: "Prompt not found" }), {
         status: 404,
@@ -15,6 +15,7 @@ export const GET = async (req, { params }) => {
       status: 200,
     });
   } catch (error) {
+    console.log(error);
     return new Response(JSON.stringify(error), {
       status: 501,
     });
@@ -24,7 +25,8 @@ export const GET = async (req, { params }) => {
 export const PATCH = async (req, { params }) => {
   try {
     await connectDB();
-    const { prompt, tag } = await params;
+    const { prompt, tag } = await req.json();
+    const { id } = await params;
 
     const existingPrompt = await Prompt.findById(id);
     if (!existingPrompt) {
@@ -52,17 +54,19 @@ export const DELETE = async (req, { params }) => {
   try {
     await connectDB();
     const { id } = await params;
-    const prompt = await Prompt.findById(id);
+    const prompt = await Prompt.findOneAndDelete(id);
     if (!prompt) {
       return new Response(JSON.stringify({ message: "Prompt not found" }), {
         status: 404,
       });
     }
-    await prompt.remove();
+
     return new Response(JSON.stringify({ message: "Prompt deleted" }), {
       status: 200,
     });
   } catch (error) {
+    console.log(error);
+
     return new Response(JSON.stringify(error), {
       status: 501,
     });

@@ -12,7 +12,6 @@ export const connectDB = async () => {
   try {
     const db = await mongoose.connect(process.env.MONGODB_URI, {
       dbName: "promptapp",
-      useUnifiedTopology: true,
     });
     isConnected = true;
     console.log("MongoDB is connected");

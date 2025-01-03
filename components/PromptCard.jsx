@@ -19,7 +19,10 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
   return (
     <div className="prompt_card">
       <div className="flex justify-between items-start gap-5">
-        <div className="felx-1 justify-start items-center gap-3 cursor-pointer">
+        <div
+          className="flex justify-start items-center gap-3 cursor-pointer"
+          onClick={() => router.push(`/profile/${post.creator._id}`)}
+        >
           <Image
             src={post.creator.image}
             alt="userImage"
@@ -40,8 +43,8 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
           <Image
             src={
               copied === post.prompt
-                ? "assets/icons/tick.svg"
-                : "assets/icons/copy.svg"
+                ? "/assets/icons/tick.svg"
+                : "/assets/icons/copy.svg"
             }
             alt="copy"
             width={20}
@@ -54,7 +57,7 @@ const PromptCard = ({ post, handleTagClick, handleEdit, handleDelete }) => {
         className="font-inter text-sm blue_gradient cursor-pointer"
         onClick={() => handleTagClick && handleTagClick(post.tag)}
       >
-        {post.tag}
+        {post.tag.includes("#") ? post.tag : `#${post.tag}`}
       </p>
       {session?.user.id === post.creator._id && pathName === "/profile" && (
         <div className="mt-5 flex justify-end gap-7 border-t border-gray-400 pt-3 ">

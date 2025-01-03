@@ -9,14 +9,18 @@ const Profile = ({ name, desc, data, handleEdit, handleDelete }) => {
       </h1>
       <p className="desc text-left">{desc}</p>
       <div className="mt-16 prompt_layout">
-        {data.map((prompt) => (
-          <PromptCard
-            key={prompt._id}
-            post={prompt}
-            handleEdit={handleEdit && handleEdit(prompt)}
-            handleDelete={handleDelete && handleDelete(prompt)}
-          />
-        ))}
+        {data.length > 0 ? (
+          data.map((prompt) => (
+            <PromptCard
+              key={prompt._id}
+              post={prompt}
+              handleEdit={() => handleEdit(prompt)}
+              handleDelete={() => handleDelete(prompt)}
+            />
+          ))
+        ) : (
+          <img src="/assets/icons/loader.svg" alt="loader" />
+        )}
       </div>
     </section>
   );

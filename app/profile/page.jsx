@@ -28,7 +28,18 @@ const Home = () => {
   };
 
   const handleDelete = async (post) => {
-    // Delete logic to be added here
+    const hasConfirmed = confirm("Are you sure you want to delete this post?");
+    if (!hasConfirmed) return;
+    try {
+      const res = await fetch(`/api/prompt/${post._id.toString()}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        setPosts((prev) => prev.filter((p) => p._id !== post._id));
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
