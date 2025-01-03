@@ -1,17 +1,18 @@
 "use client";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 import Form from "../../components/Form";
 
-// Component responsible for rendering the form after data is fetched
-const UpdatePromptForm = ({ promptId }) => {
+const UserProfile = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const promptId = searchParams.get("id");
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
     prompt: "",
     tag: "",
   });
-
   useEffect(() => {
     const fetchPrompt = async () => {
       const res = await fetch(`/api/prompt/${promptId}`);
@@ -21,16 +22,13 @@ const UpdatePromptForm = ({ promptId }) => {
         tag: data.tag,
       });
     };
-
     if (promptId) fetchPrompt();
   }, [promptId]);
-
   const updatePrompt = async (e) => {
     e.preventDefault();
     setSubmitting(true);
 
     if (!promptId) return alert("Prompt ID not found");
-
     try {
       const res = await fetch(`/api/prompt/${promptId}`, {
         method: "PATCH",
@@ -42,11 +40,9 @@ const UpdatePromptForm = ({ promptId }) => {
           tag: post.tag,
         }),
       });
-
       if (res.ok) {
         router.push("/");
       }
-
       setPost({ prompt: "", tag: "" });
     } catch (error) {
       console.log(error);
@@ -56,25 +52,20 @@ const UpdatePromptForm = ({ promptId }) => {
   };
 
   return (
-    <Suspense fallback={<img src="assets/icons/loader.svg" />}>
-      <Form
-        type="Update"
-        post={post}
-        setPost={setPost}
-        submitting={submitting}
-        handleSubmit={updatePrompt}
-      />
-    </Suspense>
+    <Form
+      type="Update"
+      post={post}
+      setPost={setPost}
+      submitting={submitting}
+      handleSubmit={updatePrompt}
+    />
   );
 };
 
 const Home = () => {
-  const searchParams = useSearchParams();
-  const promptId = searchParams.get("id");
-
   return (
-    <Suspense fallback={<img src="assets/icons/loader.svg" />}>
-      <UpdatePromptForm promptId={promptId} />
+    <Suspense fallback={<img src="/assets/icons/loader.svg" alt="loader" />}>
+      <UserProfile />;
     </Suspense>
   );
 };
