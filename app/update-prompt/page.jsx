@@ -71,12 +71,8 @@ const Home = () => {
   const promptId = searchParams.get("id");
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      {promptId ? (
-        <UpdatePromptForm promptId={promptId} />
-      ) : (
-        <div>No prompt ID found</div>
-      )}
+    <Suspense fallback={<img src="assets/icons/loader.svg" />}>
+      <UpdatePromptForm promptId={promptId} />
     </Suspense>
   );
 };
