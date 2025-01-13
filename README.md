@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# PromptApp
 
-## Getting Started
+PromptApp is a modern web application designed to enhance the sharing and discovery of AI prompts. Built with a cutting-edge tech stack, it provides users with a seamless experience for creating, sharing, and managing AI prompts within a community-driven platform.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js**: A powerful React framework for building server-side rendered and statically generated web applications.
+- **MongoDB**: A NoSQL database for scalable and flexible data storage.
+- **NextAuth**: A comprehensive authentication library for secure Google authentication.
+- **TailwindCSS**: A utility-first CSS framework for rapid UI development.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🔋 Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 👉 Modern Design with Glassmorphism Trend Style
+A visually striking and contemporary design inspired by the glassmorphism trend, providing a clean and elegant user interface.
 
-## Learn More
+### 👉 Discover and Share AI Prompts
+Users can explore a variety of AI prompts shared by the community and contribute their own prompts for others to discover.
 
-To learn more about Next.js, take a look at the following resources:
+### 👉 Edit and Delete Created Prompts
+Allows users to manage their content with full control over editing and deleting their shared prompts.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 👉 Profile Page
+Each user has a personalized profile page showcasing all the prompts they have created, offering a clear summary of their contributions.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 👉 View Other People’s Profiles
+Fosters a sense of community by enabling users to browse profiles of other creators and explore their shared prompts.
 
-## Deploy on Vercel
+### 👉 Copy to Clipboard
+Provides a convenient "Copy to Clipboard" functionality, making it easy for users to copy AI prompts for their own use.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 👉 Search Prompts by Specific Tag
+Users can efficiently find relevant prompts by searching for specific tags, enhancing the discovery experience.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 👉 Google Authentication using NextAuth
+Ensures a secure and streamlined login experience through Google authentication powered by NextAuth.
+
+### 👉 Responsive Website
+Delivers a fully responsive design, guaranteeing optimal user experiences across a range of devices, including desktops, tablets, and smartphones.
+
+### 👉 Code Architecture and Reusability
+Built with a focus on modularity, reusability, and clean architecture to ensure maintainability and scalability.
+
+---
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Manav-Chudasama/promptApp.git
+   cd promptapp
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env.local` file in the root directory and configure the following environment variables:
+   ```env
+   GOOGLE_CLIENT_ID=""
+   GOOGLE_CLIENT_SECRET=""
+   MONGODB_URI=""
+   NEXTAUTH_URL="http://localhost:3000"
+   NEXTAUTH_URL_INTERNAL="http://localhost:3000"
+   NEXTAUTH_URL_SECRET=""
+   ```
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+---
+
+## Contributing
+
+Contributions are welcome! Feel free to fork the repository, create a new branch, and submit a pull request.
+
+---
+
