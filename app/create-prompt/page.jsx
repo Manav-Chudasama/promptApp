@@ -17,7 +17,7 @@ const Home = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      const res = await fetch("/api/prompt/new", {
+      const res = await fetch("/api/prompt/new",  {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
